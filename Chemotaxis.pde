@@ -1,31 +1,34 @@
-Bacteria joe; 
+Bacteria [] joe; 
 
 void setup() {  
  	size(400,400);
- 	background(0);
+ 	joe = new Bacteria [10];
+ 	for (int j = 0; j < joe.length; j++)
+ 		joe[j] = new Bacteria();
 }   
 
 void draw() { 
+	background(0);
  	int xPos2, yPos2;
- 	for (xPos2 = 150; xPos2 <= 250; xPos2 += 20) {
- 		for (yPos2 = 150; yPos2 <= 150; xPos2 += 20) {
- 			joe = new Bacteria(xPos2, yPos2);
- 			joe.show();
- 			joe.move(); 
- 		}
+ 	for (int j = 0; j < joe.length; j++) {
+ 		joe[j].show();
+ 		joe[j].move(); 
  	}   
 }  
+
 class Bacteria {   
  	int xPos, yPos;
- 	Bacteria(int x, int y) {
- 		xPos = x;
- 		yPos = y;
+ 	Bacteria() {
+ 		xPos = 200;
+ 		yPos = 200;
  	}   
 	void show() {
-		fill(0,255,0);
+		fill((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		noStroke();
  		ellipse(xPos, yPos, 10, 10);
 	}	
 	void move() {
-
+		xPos = xPos + (int)(Math.random()*9)-4;
+		yPos = yPos + (int)(Math.random()*9)-4;
 	}
 }
